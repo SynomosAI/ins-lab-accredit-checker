@@ -1,0 +1,59 @@
+# ins-lab-accredit-checker — 完整文本
+
+本文件为 llms.txt 标准的「完整版」，供长上下文模型一次性读取本仓库的完整说明。
+
+## 这是什么
+
+SynomosAI 平台的「检验检测 · CMA/CNAS 资质与能力范围」域 Profile（domain/1.0）。状态 RESERVED：已按平台协议规范建好行业接入四件套骨架，等待具备本域资质的运营方认领。
+
+把「这家机构能不能出这个报告」拆成可核验属性；AI 只做要件提示，不做检测结论。
+
+## 解决什么问题
+
+1. 资质认定（CMA）与实验室认可（CNAS）是两个独立体系，常被混为一谈。
+2. 两者都有明确能力范围，超范围出报告、代签补签是行业主要风险。
+3. 需要一个核验器只回答「这条声明是否可核验、缺什么要件」，而不替代机构出检测结论。
+
+## 四件套
+
+- domain.manifest.json：域声明（5 个属性 / 签发方要求 / 3 条红线 / 有效期）
+- gate-map.json：动作摩擦五级表，每条红线必须有对应 block / require-owner 规则
+- privacy.json：隐私声明（默认关闭、最小必要、可撤回、可删除）——缺失即校验失败
+- checker.io.json：MCP 核验器契约，输出仅 shown / missing / expired / unverifiable 四态
+
+## 属性（5 个）
+
+- ins.cma_status：valid / expired / none / suspended / not_required
+- ins.cnas_status：accredited / expired / none / suspended / not_applicable
+- ins.scope_coverage：covered / partially / not_covered / unclear
+- ins.report_validity：valid / pending / void / unknown
+- ins.signatory_authority：authorized / restricted / none / unknown
+
+## 红线（3 条）
+
+1. 不得输出「检测合格」「符合标准」等判定结论——检测结论只能由机构出具并承担相应责任
+2. 超出资质认定能力范围的项目不得给出可出具报告的表述
+3. 不得建议超范围出具报告、代签、补签或事后补做原始记录
+
+## 快速开始
+
+本仓为声明式骨架，无运行时依赖：
+
+```bash
+git clone https://github.com/SynomosAI/ins-lab-accredit-checker.git
+cd ins-lab-accredit-checker
+cat domain.manifest.json
+```
+
+## 触发词
+
+CMA 资质认定 / CNAS 实验室认可 / 能力范围 / 授权签字人 / 检验检测报告 / scope of competence / testing laboratory / accreditation / 核验器 / 域 Profile。
+
+## 许可与权利
+
+代码与配置 MIT（© 2026 SynomosAI）；文档知识版权 All Rights Reserved（学术/新闻/评估引用请注明出处）。完整条款见 LICENSE 与 LICENSE-CONTENT。联系：zhaoxinghua09@gmail.com ｜ ORCID 0009-0001-0512-1237。
+
+## 链接
+
+- 仓库: https://github.com/SynomosAI/ins-lab-accredit-checker
+- 组织: https://github.com/SynomosAI
